@@ -34,29 +34,32 @@
         //List<KnotElements> InitModel = new List<KnotElements>(Model.ToList());
 
 
-        async Task<string> Recursion(List<TreeStructureIdeo.Models.KnotElements> kElements)
-        {
+
             <thead>
                 <tr>
                     <th></th>
-                    <th>
+                    @*<th>
                         @Html.DisplayNameFor(model => model.Id)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.ParentId)
-                    </th>
+                    </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.Text)
                     </th>
-                    <th></th>
+                    
                 </tr>
             </thead>
+
+        async Task<string> Recursion(List<TreeStructureIdeo.Models.KnotElements> kElements)
+        {
             <tbody>
                 @foreach (var item in kElements)
                 {
                     <tr>
                         @if (item.Children.Any())
                         {
+
                         <td>
                             <strong>></strong>
                         </td>
@@ -65,28 +68,42 @@
                         {
                             <td></td>
                         }
-                        <td>
+                        @*<td>
                             @Html.DisplayFor(modelItem => item.Id)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.ParentId)
-                        </td>
+                        </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.Text)
-                        </td>
-                        <td>
                             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                         </td>
+                        @*<td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>*@
+
                     </tr>
-                    if (item.Children.Any())
-                    {
-                        @await Recursion(item.Children);
-                    }
+                    <tr>
+                        <td></td>
+                        <td>
+                            @if (item.Children.Any())
+                            {
+                                <table>
+                                    @await Recursion(item.Children)
+                                </table>
+                            }
+                            else { <table></table>}
+                        </td>
+                        <td></td>
+                    </tr>
+
                 }
                 </tbody>
-            return "why";
+            return "";
         }
 
         @Recursion(initModel[0].Children);
