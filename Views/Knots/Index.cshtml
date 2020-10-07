@@ -9,6 +9,14 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-controller="Knots" asp-action="Index" method="get">
+    <p>
+        Title: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 <table class="table">
     @{
 
@@ -21,9 +29,9 @@
 
         foreach (var i in initModel)    //child
         {
-            foreach(var j in initModel) //parrent
+            foreach (var j in initModel) //parrent
             {
-                if(j.Id == i.ParentId)
+                if (j.Id == i.ParentId)
                 {
                     j.AddChildren(i);
                 }
@@ -35,21 +43,21 @@
 
 
 
-            <thead>
-                <tr>
-                    <th></th>
-                    @*<th>
+        <thead>
+            <tr>
+                <th></th>
+                @*<th>
                         @Html.DisplayNameFor(model => model.Id)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.ParentId)
                     </th>*@
-                    <th>
-                        @Html.DisplayNameFor(model => model.Text)
-                    </th>
-                    
-                </tr>
-            </thead>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+
+            </tr>
+        </thead>
 
         async Task<string> Recursion(List<TreeStructureIdeo.Models.KnotElements> kElements)
         {
@@ -60,20 +68,20 @@
                         @if (item.Children.Any())
                         {
 
-                        <td>
-                            <strong>></strong>
-                        </td>
+                            <td>
+                                <strong>></strong>
+                            </td>
                         }
                         else
                         {
                             <td></td>
                         }
                         @*<td>
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ParentId)
-                        </td>*@
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ParentId)
+                            </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.Text)
                             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -81,10 +89,10 @@
                             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                         </td>
                         @*<td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>*@
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>*@
 
                     </tr>
                     <tr>
@@ -96,16 +104,19 @@
                                     @await Recursion(item.Children)
                                 </table>
                             }
-                            else { <table></table>}
+                            else
+                            { <table></table>}
                         </td>
                         <td></td>
                     </tr>
 
                 }
-                </tbody>
+            </tbody>
             return "";
         }
-
+        if (initModel.Any())
+        {
         @Recursion(initModel[0].Children);
-    }
+        }
+        }
 </table>

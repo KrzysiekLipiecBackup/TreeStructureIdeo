@@ -25,14 +25,14 @@ namespace TreeStructureIdeo.Controllers
         //    return View(await _context.Knots.ToListAsync());
         //}
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string SearchString)
         {
             var knots = from k in _context.Knots
                          select k;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(SearchString))
             {
-                knots = knots.Where(s => s.Text.Contains(searchString));
+                knots = knots.Where(s => s.Text.Contains(SearchString));
             }
 
             return View(await knots.ToListAsync());
@@ -57,7 +57,7 @@ namespace TreeStructureIdeo.Controllers
         }
 
         // GET: Knots/Create
-        public IActionResult Create()
+        public IActionResult Create(string Text)
         {
             return View();
         }
