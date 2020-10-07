@@ -20,35 +20,16 @@ namespace TreeStructureIdeo.Controllers
         }
 
         // GET: Knots
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.Knots.ToListAsync());
-        //}
+
 
         public async Task<IActionResult> Index(string SearchString)
         {
-            var knots = from k in _context.Knots
-                         select k;
-
-            if (!String.IsNullOrEmpty(SearchString))
-            {
-                knots = knots.Where(s => s.Text.Contains(SearchString));
-            }
-
-            return View(await knots.ToListAsync());
+            return View(await _context.Knots.ToListAsync());
         }
 
-        public async Task<IActionResult> Index_z_wartosciami_id(string SearchString)
+        public async Task<IActionResult> Index_z_wartosciami_id()
         {
-            var knots = from k in _context.Knots
-                        select k;
-
-            if (!String.IsNullOrEmpty(SearchString))
-            {
-                knots = knots.Where(s => s.Text.Contains(SearchString));
-            }
-
-            return View(await knots.ToListAsync());
+            return View(await _context.Knots.ToListAsync());
         }
 
         // GET: Knots/Details/5
