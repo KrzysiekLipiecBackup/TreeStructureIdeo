@@ -38,6 +38,19 @@ namespace TreeStructureIdeo.Controllers
             return View(await knots.ToListAsync());
         }
 
+        public async Task<IActionResult> Index_z_wartosciami_id(string SearchString)
+        {
+            var knots = from k in _context.Knots
+                        select k;
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                knots = knots.Where(s => s.Text.Contains(SearchString));
+            }
+
+            return View(await knots.ToListAsync());
+        }
+
         // GET: Knots/Details/5
         public async Task<IActionResult> Details(int? id)
         {

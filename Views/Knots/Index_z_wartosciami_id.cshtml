@@ -46,12 +46,12 @@
         <thead>
                 <tr>
 
-                    @*<th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Id)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.ParentId)
-                    </th>*@
+                    </th>
                     <th></th>
                     <th>
                         @Html.DisplayNameFor(model => model.Text)
@@ -67,12 +67,12 @@
                 {
                 <tr>
 
-                    @*<td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Id)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ParentId)
-                    </td>*@
+                    </td>
                     @if (item.Children.Any())
                     {
 
@@ -98,8 +98,8 @@
 
                 </tr>
                     <tr>
-                        @*<td></td>
-                        <td></td>*@
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td>
                             @if (item.Children.Any())
