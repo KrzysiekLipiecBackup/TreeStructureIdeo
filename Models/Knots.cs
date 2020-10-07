@@ -18,9 +18,6 @@ namespace TreeStructureIdeo.Models
         public string Text { get; set; }
 
 
-        //public DateTime? CreatedDate { get; set; }
-
-
         public int? ParentId { get; set; }
 
     }
